@@ -1,0 +1,10 @@
+[docker:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_private_key_file=/.vagrant.d/insecure_private_key
+ansible_ssh_port=22
+#build_path=/opt/build
+#build_project=/opt/build
+
+[docker]
+enve-labs-docker-vm ansible_ssh_host=127.0.0.1 ansible_connection=ssh ansible_user=vagrant ansible_port=22 ansible_ssh_private_key_file=.vagrant/machines/enve-labs-docker-vm/virtualbox/private_key ansible_python_interpreter=/usr/bin/python3
+

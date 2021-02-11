@@ -1,0 +1,34 @@
+#version: "3.5"
+#services:
+#  app:
+#    image:  httpd:latest
+#    depends_on:
+#      - mongodb
+#    ports:
+#      - "8080:80"
+#    networks:
+#      - lan
+#
+#  mongodb:
+#    image: mongo:4.2.12
+#    expose:
+#      - "27017"
+#    networks:
+#      - lan
+#
+#networks:
+#  lan:
+#    name: local-area-network 
+
+version: "3.5"
+services:
+  sdk:
+    image: mcr.microsoft.com/dotnet/sdk:latest
+  node:
+    image: node:latest
+  redis:
+    image: redis:latest
+  apache:
+    image: httpd:latest
+  mysql:
+    image: mysql:latest

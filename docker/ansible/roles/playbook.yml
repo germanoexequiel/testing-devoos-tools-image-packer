@@ -1,0 +1,12 @@
+---
+- name: running apps into the VM  
+  hosts: localhost
+  become: true
+  become_user: root
+  roles:
+    - base
+    - java8
+    - apache
+    - nginx
+    #- jenkins
+    #- mongo

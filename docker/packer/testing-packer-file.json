@@ -1,0 +1,45 @@
+{
+  "variables": {
+    "root_dir": "/root",
+    "tmp_dir": "/tmp",
+    "playbook_file": "/home/vagrant/shared/ansible/roles/playbook.yml",
+    "playbook_dir": "/home/vagrant/shared/ansible/roles",
+    "docker_image_tag": "1.0"
+  },
+
+  "builders":[
+    {
+      "type": "docker",
+      "image": "ubuntu:bionic",
+      "commit": true
+    }
+  ],
+  "provisioners": [
+  {
+     "type": "shell",
+     "script": "/home/vagrant/shared/ansible/sripts/ansible.sh"
+  },
+  {
+     "type": "ansible-local",
+     "staging_directory": "{{user `tmp_dir`}}/ansible",
+     "playbook_dir": "{{user `playbook_dir`}}",
+     "playbook_file": "{{user `playbook_file`}}",
+     "role_paths": [
+       "/home/vagrant/shared/ansible/roles/base",
+       "/home/vagrant/shared/ansible/roles/java8",
+       "/home/vagrant/shared/ansible/roles/apache",
+       "/home/vagrant/shared/ansible/roles/nginx"
+    ]
+  }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository": "packer-image-test",
+        "tags": "{{user `docker_image_tag`}}"
+      }
+      ]
+   ]
+}
+
